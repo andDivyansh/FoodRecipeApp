@@ -9,11 +9,13 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.divyansh.foodrecipeapp.R
 import com.divyansh.foodrecipeapp.presentation.RecipeCard
+import com.divyansh.foodrecipeapp.util.loadImagesForList
 
 
 @Composable
@@ -31,15 +33,12 @@ fun RecipeCardView(
     ) {
         Column {
             recipe.image?.let {
-                Image(
-                    painterResource(id = R.drawable.question_mark), contentDescription = "",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(225.dp),
-                    contentScale = ContentScale.Crop
-                )
+                loadImagesForList(url = it)?.let { urlImage ->
+                    urlImage.value?.asImageBitmap()?.let { img ->
+                        Image(bitmap = img, contentDescription = "")
+                    }
+                }
             }
-
             recipe.title?.let { title ->
                 Row(
                     modifier = Modifier
