@@ -24,9 +24,9 @@ fun RecipeCardView(
     onItemClick: () -> Unit
 ) {
     Card(
-        shape = MaterialTheme.shapes.small,
+        shape = MaterialTheme.shapes.medium,
         modifier = Modifier
-            .padding(bottom = 6.dp, top = 6.dp)
+            .padding(bottom = 10.dp, top = 10.dp)
             .fillMaxWidth()
             .clickable(onClick = onItemClick),
         elevation = 10.dp
@@ -35,7 +35,9 @@ fun RecipeCardView(
             recipe.image?.let {
                 loadImagesForList(url = it)?.let { urlImage ->
                     urlImage.value?.asImageBitmap()?.let { img ->
-                        Image(bitmap = img, contentDescription = "")
+                        Image(bitmap = img, contentDescription = "",
+                        modifier = Modifier.fillMaxWidth(),
+                        contentScale = ContentScale.Crop)
                     }
                 }
             }

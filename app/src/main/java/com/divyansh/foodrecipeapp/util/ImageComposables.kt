@@ -16,9 +16,9 @@ import com.divyansh.foodrecipeapp.util.AppConstants.DEFAULT_IMAGE_PLACEHOLDER
 @Composable
 fun loadImagesForList(
     url: String,
-): MutableState<Bitmap?>? {
-    val bitmapState: MutableState<Bitmap?>? = mutableStateOf(null)
-    // first load the list with placeholder images
+): MutableState<Bitmap?> {
+    val bitmapState: MutableState<Bitmap?> = mutableStateOf(null)
+    // first load the list with placeholder image.
     Glide.with(LocalContext.current)
         .asBitmap()
         .load(DEFAULT_IMAGE_PLACEHOLDER)
@@ -26,22 +26,18 @@ fun loadImagesForList(
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
                 bitmapState?.value = resource
             }
-
             override fun onLoadCleared(placeholder: Drawable?) {}
-
         })
 
-    // get the image from URL
+    // get the image from URL.
     Glide.with(LocalContext.current)
         .asBitmap()
         .load(url)
         .into(object : CustomTarget<Bitmap>() {
             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                bitmapState?.value = resource
+                bitmapState.value = resource
             }
-
             override fun onLoadCleared(placeholder: Drawable?) {}
-
         })
 
     return bitmapState

@@ -18,13 +18,19 @@ class RecipeListViewModel @Inject constructor(
 ) : ViewModel() {
 
     val recipeList: MutableState<List<RecipeCard>?> = mutableStateOf(emptyList())
+    val query  = mutableStateOf("")
 
-    fun getRecipes(searchString: String, pageValue: Int){
+    fun getRecipes(searchString: String){
         viewModelScope.launch {
             val response = recipeRepository.searchRecipe(
-                authToken = token, page = pageValue, query = searchString
+                authToken = token, query = searchString,
+                page = 1
             )
             recipeList.value = response
         }
+    }
+
+    fun getSearchQuery(searchInput: String){
+        query.value = searchInput
     }
 }
