@@ -10,4 +10,7 @@ object AppConstants {
     const val BASE_URL = "https://api.spoonacular.com/recipes/"
 
     const val DEFAULT_IMAGE_PLACEHOLDER = R.drawable.question_mark
+
+    // Result count per page
+    const val TOTAL_RESULTS_PER_PAGE = 20
 }

@@ -20,12 +20,24 @@ class RecipeListViewModel @Inject constructor(
     val recipeList: MutableState<List<RecipeCard>?> = mutableStateOf(emptyList())
     val query  = mutableStateOf("")
 
+    init {
+        getRandomRecipes()
+    }
+
     fun getRecipes(searchString: String){
         viewModelScope.launch {
             val response = recipeRepository.searchRecipe(
                 authToken = token, query = searchString,
                 page = 1
             )
+            recipeList.value = response
+        }
+    }
+
+    fun getRandomRecipes(){
+      // val yrl = " https://api.spoonacular.com/recipes/random?number=30&instructionsRequired=true&apiKey=c957b6816ba048139fbc25a67d2cff33"
+        viewModelScope.launch {
+            val response  = recipeRepository.getRandomRecipe(authToken = token)
             recipeList.value = response
         }
     }

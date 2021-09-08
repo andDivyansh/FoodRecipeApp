@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.text.KeyboardActions
@@ -25,7 +22,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.divyansh.foodrecipeapp.R
 import com.divyansh.foodrecipeapp.presentation.viewmodels.RecipeListViewModel
 import com.divyansh.foodrecipeapp.presentation.viewmodels.components.RecipeCardView
 import dagger.hilt.android.AndroidEntryPoint
@@ -41,7 +37,6 @@ class RecipeListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         return ComposeView(requireContext()).apply {
-            setBackgroundColor(resources.getColor(R.color.cardview_shadow_start_color))
             setContent {
                 val recipes = recipeListViewModel.recipeList.value?.toMutableList() ?: emptyList()
                 Column {
@@ -55,7 +50,13 @@ class RecipeListFragment : Fragment() {
                     }
                     LazyColumn {
                         itemsIndexed(items = recipes) { _, item ->
-                            RecipeCardView(recipe = item, onItemClick = {})
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth(0.5f)
+                                    .padding(12.dp)
+                            ) {
+                                RecipeCardView(recipe = item, onItemClick = {})
+                            }
                         }
                     }
                 }

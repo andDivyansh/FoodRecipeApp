@@ -7,8 +7,14 @@ interface RecipeServices {
 
     @GET("complexSearch")
     suspend fun searchRecipe(
-        @Query(value = "apiKey") token : String,
+        @Query(value = "apiKey") token: String,
         @Query(value = "query") searchString: String
-    ) : RecipeSearchResponse
+    ): RecipeSearchResponse
+
+    @GET("random")
+    suspend fun randomRecipe(
+        @Query(value = "number") resultsCount: Int,
+        @Query(value = "apiKey") token: String
+    ): RecipeRandomResponse
 
 }
