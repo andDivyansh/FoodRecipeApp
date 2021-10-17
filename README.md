@@ -2,11 +2,11 @@
 Food Recipe App is the perfect solution for foodies who are bored of the cooking the same food everyday. It is an android application that offers different recipes using <a href=https://spoonacular.com/food-api>Spoonacular API</a>. <br>
 With Food Recipe App, users can see a random recipes and they can  search recipes by keyword search and more .
 
-<p align="center"><img src="screenshots/random_search_page.png" height="250" width="250" /></p>
+<p align="center"><img src="screenshots/random_search_page.png" height="500" width="250" /></p>
 
 ### IN-PROGRESS
 * Recipe Details Page
-* gSearch Bar
+* Search Bar
 
 ### Features
 * Random recipes available for the day
